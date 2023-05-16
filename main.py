@@ -19,7 +19,7 @@ potentiometer = MCP3008(channel=0)
 
 # Initialisation de pygame
 # Voir https://projects.raspberrypi.org/en/projects/gpio-music-box/1
-pygame.mixer.init()
+# pygame.mixer.init()
 # sound_red = pygame.mixer.Sound("chemin/vers/son/rouge.wav")
 # sound_yellow = pygame.mixer.Sound("chemin/vers/son/jaune.wav")
 # sound_green = pygame.mixer.Sound("chemin/vers/son/vert.wav")
@@ -71,9 +71,11 @@ def play_green():
 
 def get_potentiometer_value():
     """
-    Récupère la valeur du potentiomètre
+    Récupère la valeur du potentiomètre en secondes
     """
-    return potentiometer.value
+    # Transformer la valeur du potentiomètre entre 0 et 1 en secondes
+    val_in_seconds = potentiometer.value * 10
+    return round(val_in_seconds)
 
 
 # Associer les fonctions aux boutons
@@ -131,3 +133,5 @@ while True:
 
     # Attendre 0.1 seconde
     sleep(0.1)
+    # pygame.time.wait(1000)
+
